@@ -181,7 +181,7 @@ module.exports = function(grunt) {
                         if (fs.existsSync(lowResolutionImagePath)) {
                             src = lowResolutionImagePath;
                         }
-                        convert([src, '-resize', size, saveTo]);
+                        convert(['-background none', src, '-resize', size, saveTo]);
                         files.push(saveTo);
                     });
                     grunt.log.ok();
@@ -198,7 +198,7 @@ module.exports = function(grunt) {
 
                     // 64x64 favicon.png higher priority than .ico
                     grunt.log.write('favicon.png... ');
-                    convert([source, '-resize', "64x64", path.join(f.dest, 'favicon.png')]);
+                    convert(['-background none', source, '-resize', "64x64", path.join(f.dest, 'favicon.png')]);
                     grunt.log.ok();
                 }
 
@@ -265,7 +265,7 @@ module.exports = function(grunt) {
                     convert(combine(source, f.dest, "192x192", "homescreen-192x192.png", additionalOpts));
                     grunt.log.ok();
                 }
-                
+
                 // Android Icons app
                 if (options.androidIcons) {
                     // 36x36: LDPI
